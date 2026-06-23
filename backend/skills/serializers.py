@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Category, Skill
 
 
@@ -8,13 +9,24 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = "__all__"
 
+
 class SkillSerializer(serializers.ModelSerializer):
 
-    category_name = serializers.CharField(
-        source = "category.name",
-        read_only = True
+    category_name = serializers.ReadOnlyField(
+        source="category.name"
     )
 
     class Meta:
-        model = Skill 
-        fields = "__all__"
+        model = Skill
+
+        fields = [
+            "id",
+            "title",
+            "description",
+            "owner_name",
+            "category",
+            "category_name",
+            "experience_level",
+            "created_at",
+            "updated_at",
+        ]

@@ -16,11 +16,12 @@ class CategoryAdmin(admin.ModelAdmin):
 class SkillAdmin(admin.ModelAdmin):
 
     list_display = (
-        "id",
+        
         "title",
         "owner_name",
         "category",
         "experience_level",
+        "created_at",
     )
 
     list_filter = (
@@ -30,5 +31,10 @@ class SkillAdmin(admin.ModelAdmin):
 
     search_fields = (
         "title",
+        "description",
         "owner_name",
+    )
+
+    ordering = (
+        "-created_at",
     )
