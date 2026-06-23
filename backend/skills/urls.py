@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import CategoryViewSet
+from .views import CategoryViewSet, SkillViewSet
 
 router = DefaultRouter()
 router.register(
@@ -8,4 +8,9 @@ router.register(
     basename="categories"
 )
 
+router.register(
+    "skills",
+    SkillViewSet,
+    basename="skills"
+)
 urlpatterns = router.urls
