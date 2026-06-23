@@ -23,15 +23,15 @@ class Skill(models.Model):
 
     title = models.CharField(max_length=150)
     description = models.TextField()
-    Category = models.ForeignKey(
+    category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
         related_name="skills"
     )
 
-    ower_name = models.CharField(max_length=100)
+    owner_name = models.CharField(max_length=100)
 
-    exprience_level = models.CharField(
+    experience_level = models.CharField(
         max_length=20,
         choices=LEVEL_CHOICES
     )
