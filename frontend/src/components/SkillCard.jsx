@@ -1,31 +1,47 @@
-import { Link } from "react-router-dom";
+function SkillCard({ skill }) {
 
-function Navbar() {
     return (
-        <nav className="bg-blue-600 text-white p-4">
 
-            <div className="max-w-7xl mx-auto flex justify-between">
+        <div className="border rounded-lg p-5 shadow hover:shadow-lg transition">
 
-                <h1 className="text-2xl font-bold">
-                    SkillSwap
-                </h1>
+            <h2 className="text-xl font-bold">
 
-                <div className="flex gap-5">
+                {skill.title}
 
-                    <Link to="/">
-                        Home
-                    </Link>
+            </h2>
 
-                    <Link to="/skills">
-                        Skills
-                    </Link>
+            <p className="text-gray-600 mt-2">
 
-                </div>
+                {skill.description}
+
+            </p>
+
+            <div className="mt-4">
+
+                <span className="bg-blue-100 px-3 py-1 rounded">
+
+                    {skill.category_name}
+
+                </span>
 
             </div>
 
-        </nav>
+            <div className="mt-3 text-sm text-gray-500">
+
+                {skill.owner_name}
+
+            </div>
+
+            <div className="mt-2">
+
+                {skill.experience_level}
+
+            </div>
+
+        </div>
+
     );
+
 }
 
-export default Navbar;
+export default SkillCard;
