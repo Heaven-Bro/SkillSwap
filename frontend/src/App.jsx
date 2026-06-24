@@ -1,19 +1,15 @@
-import {
-  BrowerRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Skills from "./pages/Skills";
 
 function App(){
   return (
-    <BrowerRouter>
+    <BrowserRouter>
         <Routes>
           <Route path="/" element ={<Skills/>} />
           <Route path="/skills" element={<Skills/>} />
         </Routes>
-    </BrowerRouter>
+    </BrowserRouter>
   );
 }
 
