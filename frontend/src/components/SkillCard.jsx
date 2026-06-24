@@ -1,44 +1,50 @@
+import { Link } from "react-router-dom";
+
 function SkillCard({ skill }) {
 
     return (
 
-        <div className="border rounded-lg p-5 shadow hover:shadow-lg transition">
+        <Link to={`/skills/${skill.id}`}>
 
-            <h2 className="text-xl font-bold">
+            <div className="border rounded-lg p-5 hover:shadow-lg transition bg-white">
 
-                {skill.title}
+                <h2 className="text-xl font-bold">
 
-            </h2>
+                    {skill.title}
 
-            <p className="text-gray-600 mt-2">
+                </h2>
 
-                {skill.description}
+                <p className="mt-3 text-gray-600 line-clamp-3">
 
-            </p>
+                    {skill.description}
 
-            <div className="mt-4">
+                </p>
 
-                <span className="bg-blue-100 px-3 py-1 rounded">
+                <div className="mt-4 flex justify-between">
 
-                    {skill.category_name}
+                    <span className="bg-blue-100 px-3 py-1 rounded">
 
-                </span>
+                        {skill.category_name}
+
+                    </span>
+
+                    <span>
+
+                        {skill.experience_level}
+
+                    </span>
+
+                </div>
+
+                <div className="mt-4 text-gray-500">
+
+                    {skill.owner_name}
+
+                </div>
 
             </div>
 
-            <div className="mt-3 text-sm text-gray-500">
-
-                {skill.owner_name}
-
-            </div>
-
-            <div className="mt-2">
-
-                {skill.experience_level}
-
-            </div>
-
-        </div>
+        </Link>
 
     );
 
