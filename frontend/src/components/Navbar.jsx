@@ -19,6 +19,17 @@ function Navbar() {
                     <Link to="/skills">
                         Skills
                     </Link>
+                    <Link
+
+                        to="/skills/create"
+
+                        className="hover:text-yellow-300"
+
+                    >
+
+                        Add Skill
+
+                    </Link>
 
                 </div>
 

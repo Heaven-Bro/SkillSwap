@@ -1,13 +1,30 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Skills from "./pages/Skills";
 import SkillDetails from "./pages/SkillDetails";
+import CreateSkill from "./pages/CreateSkill";
 
-<Routes>
+function App() {
+  return (
+    <BrowserRouter>
 
-    <Route path="/" element={<Home />} />
+      <Routes>
 
-    <Route path="/skills" element={<Skills />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/skills" element={<Skills />} />
+        <Route path="/skills/:id" element={<SkillDetails />}/>
+<Route
 
-    <Route path="/skills/:id" element={<SkillDetails />} />
+    path="/skills/create"
 
-</Routes>
+    element={<CreateSkill />}
+
+/>
+      </Routes>
+
+    </BrowserRouter>
+  );
+}
+
+export default App;
