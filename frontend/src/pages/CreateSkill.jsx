@@ -9,7 +9,7 @@ import { createSkill } from "../api/skillApi";
 function CreateSkill() {
 
     const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
 
         title: "",
@@ -23,10 +23,33 @@ function CreateSkill() {
     async function handleSubmit(e) {
 
         e.preventDefault();
-
-        await createSkill(formData);
-
-        navigate("/skills");
+        if(!formData.title.trim()){
+            alert("Title is required");
+            return;
+        }
+        if(!formData.description.trim()){
+            alert("Description is required");
+            return;
+        }
+        if(!formData.owner_name.trim()){
+            alert("Owner name is required");
+            return;
+        }
+        if(!formData.category){
+            alert("please select a category");
+            return;
+        }
+        try {
+            setLoading(true);
+            await createSkill(formData);
+            alert("Skill created sucessfully");
+            navigate("/skills");
+        } catch (error){
+            console.error(error);
+            alert("Something wwent wrong");
+        }finally {
+            setLoading(false);
+        }
 
     }
 
@@ -43,6 +66,9 @@ function CreateSkill() {
                     Create Skill
 
                 </h1>
+                {loading && (
+                    <p className="mb-4 text-blue-600">Saving</p>
+                )}
 
                 <SkillForm
 

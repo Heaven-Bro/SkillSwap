@@ -3,12 +3,29 @@ import { useParams } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import { getSkill } from "../api/skillApi";
+import { deleteSkill } from "../api/skillApi";
+import { useNavigate } from "react-router-dom";
 
 function SkillDetails() {
 
     const { id } = useParams();
 
     const [skill, setSkill] = useState(null);
+
+    const navigate = useNavigate();
+
+    async function handleDelete() {
+        const comfirmDelete = window.comfirm(
+            "Are you sure you want to delete this skill?"
+        );
+
+        if (!comfirmDelete) return;
+
+        await deleteSkill(skill.id);
+
+        navigate("/skills");
+
+    }
 
     useEffect(() => {
 
@@ -99,6 +116,31 @@ function SkillDetails() {
                     >
 
                         Request Skill Exchange
+
+                    </button>
+
+                </div>
+                <div className="flex gap-3 mt-8">
+
+                    <button
+
+                        className="bg-yellow-500 text-white px-5 py-2 rounded"
+
+                    >
+
+                        Edit
+
+                    </button>
+
+                    <button
+
+                        onClick={handleDelete}
+
+                        className="bg-red-600 text-white px-5 py-2 rounded"
+
+                    >
+
+                        Delete
 
                     </button>
 
