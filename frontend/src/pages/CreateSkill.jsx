@@ -14,7 +14,6 @@ function CreateSkill() {
 
         title: "",
         description: "",
-        owner_name: "",
         category: "",
         experience_level: "Beginner",
 
@@ -31,10 +30,7 @@ function CreateSkill() {
             alert("Description is required");
             return;
         }
-        if(!formData.owner_name.trim()){
-            alert("Owner name is required");
-            return;
-        }
+        
         if(!formData.category){
             alert("please select a category");
             return;

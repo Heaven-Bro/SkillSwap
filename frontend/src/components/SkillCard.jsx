@@ -38,7 +38,7 @@ function SkillCard({ skill }) {
 
                 <div className="mt-4 text-gray-500">
 
-                    {skill.owner_name}
+                    {skill.owner}
 
                 </div>
 

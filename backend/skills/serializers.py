@@ -12,6 +12,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class SkillSerializer(serializers.ModelSerializer):
 
+    owner = serializers.ReadOnlyField(source="owner.username")
+
     category_name = serializers.ReadOnlyField(
         source="category.name"
     )
@@ -19,14 +21,4 @@ class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
 
-        fields = [
-            "id",
-            "title",
-            "description",
-            "owner_name",
-            "category",
-            "category_name",
-            "experience_level",
-            "created_at",
-            "updated_at",
-        ]
+        fields = "__all__"

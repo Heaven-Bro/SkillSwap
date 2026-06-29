@@ -47,18 +47,7 @@ function SkillForm({ formData, setFormData, onSubmit }) {
                 className="w-full border p-3 rounded"
             />
 
-            <input
-                type="text"
-                placeholder="Owner Name"
-                value={formData.owner_name}
-                onChange={(e) =>
-                    setFormData({
-                        ...formData,
-                        owner_name: e.target.value
-                    })
-                }
-                className="w-full border p-3 rounded"
-            />
+            
 
             <select
                 value={formData.category}

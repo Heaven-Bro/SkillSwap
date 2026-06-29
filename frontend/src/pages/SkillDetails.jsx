@@ -103,7 +103,7 @@ function SkillDetails() {
 
                         <p className="mt-2">
 
-                            {skill.owner_name}
+                            {skill.owner}
 
                         </p>
 
