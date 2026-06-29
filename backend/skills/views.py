@@ -29,3 +29,17 @@ class SkillViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
 
         serializer.save(owner=self.request.user)
+
+
+
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+@action(detail=False, methods=["get"], permission_classes=[IsAuthenticated])
+def my_skills(self, request):
+
+    skills = Skill.objects.filter(owner=request.user)
+
+    serializer = self.get_serializer(skills, many=True)
+
+    return Response(serializer.data)
