@@ -5,12 +5,18 @@ import Skills from "./pages/Skills";
 import SkillDetails from "./pages/SkillDetails";
 import CreateSkill from "./pages/CreateSkill";
 import EditSkill from "./pages/EditSkill";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
 
       <Routes>
+        <Route path="/login" element ={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/skills/create" element={<ProtectedRoute> <CreateSkill/> </ProtectedRoute>} />
 
         <Route path="/" element={<Home />} />
         <Route path="/skills" element={<Skills />} />
