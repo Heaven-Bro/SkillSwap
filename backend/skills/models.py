@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -29,7 +30,11 @@ class Skill(models.Model):
         related_name="skills"
     )
 
-    owner_name = models.CharField(max_length=100)
+    owner = models.ForeignKey(
+    User,
+    on_delete=models.CASCADE,
+    related_name="skills"
+)
 
     experience_level = models.CharField(
         max_length=20,

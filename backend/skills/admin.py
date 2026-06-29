@@ -18,7 +18,7 @@ class SkillAdmin(admin.ModelAdmin):
     list_display = (
         
         "title",
-        "owner_name",
+        "owner",
         "category",
         "experience_level",
         "created_at",
@@ -32,7 +32,7 @@ class SkillAdmin(admin.ModelAdmin):
     search_fields = (
         "title",
         "description",
-        "owner_name",
+        "owner",
     )
 
     ordering = (
