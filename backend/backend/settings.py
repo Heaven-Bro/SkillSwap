@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "profiles",
     'exchange',
     'reviews',
+    'notifications',
 
 
     'rest_framework',
