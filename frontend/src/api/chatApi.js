@@ -21,3 +21,7 @@ export const createConversation = (data) => {
 export const sendMessage = (data) => {
     return api.post("chat/messages/", data);
 };
+
+export const getUserStatus = () => {
+    return api.get("chat/status/");
+};

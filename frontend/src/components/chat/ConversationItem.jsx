@@ -1,3 +1,6 @@
+import UserStatusBadge from "./UserStatusBadge";
+
+
 function ConversationItem({ conversation, onSelect }) {
 
     return (
@@ -10,11 +13,20 @@ function ConversationItem({ conversation, onSelect }) {
 
         >
 
-            <h3 className="font-semibold">
 
-                {conversation.participants.join(", ")}
+            <div className="flex items-center gap-2">
 
-            </h3>
+                <UserStatusBadge
+                    online={conversation.online}
+                />
+
+                <h3>
+
+                    {conversation.participants.join(", ")}
+
+                </h3>
+
+            </div>
 
             <p className="text-gray-500">
 

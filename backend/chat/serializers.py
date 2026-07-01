@@ -44,6 +44,8 @@ class ConversationSerializer(serializers.ModelSerializer):
         many=True
     )
 
+    online = serializers.SerializerMethodField()
+    last_seen = serializers.SerializerMethodField()
     last_message = serializers.SerializerMethodField()
     last_sender = serializers.SerializerMethodField()
 
@@ -54,14 +56,12 @@ class ConversationSerializer(serializers.ModelSerializer):
         fields = (
 
             "id",
-
             "participants",
-
             "last_message",
-
             "last_sender",
-
             "updated_at",
+            "online",
+            "last_seen",
 
         )
 
@@ -75,6 +75,39 @@ class ConversationSerializer(serializers.ModelSerializer):
 
         return ""
     
+
+    def get_online(self, obj):
+
+        request = self.context["request"]
+
+        other = obj.participants.exclude(
+            id=request.user.id
+        ).first()
+
+        if not other:
+            return False
+
+        if hasattr(other, "status"):
+            return other.status.is_online
+
+        return False
+
+
+    def get_last_seen(self, obj):
+
+        request = self.context["request"]
+
+        other = obj.participants.exclude(
+            id=request.user.id
+        ).first()
+
+        if not other:
+            return None
+
+        if hasattr(other, "status"):
+            return other.status.last_seen
+
+        return None
 
 class UserStatusSerializer(serializers.ModelSerializer):
 
