@@ -11,7 +11,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
 
-        self.user = self.scope["user"]
+        self.user = self.scope.get["user"]
 
         if self.user.is_anonymous:
             await self.close()
