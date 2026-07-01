@@ -4,8 +4,14 @@ export const getConversations = () => {
     return api.get("chat/conversations/");
 };
 
-export const getMessages = () => {
-    return api.get("chat/messages/");
+export const getMessages = (conversationId) => {
+
+    return api.get(
+
+        `chat/messages/?conversation=${conversationId}`
+
+    );
+
 };
 
 export const createConversation = (data) => {

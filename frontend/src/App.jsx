@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import ReviewList from "./pages/ReviewList";
 import CreateReview from "./pages/CreateReview";
 import NotificationList from "./pages/NotificationList";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/reviews" element={<ReviewList/>}/>
         <Route path="/reviews/create" element={<CreateReview/>} />
         <Route path="/notifications" element={<NotificationList/>} />
+        <Route path="/chat" element={<ChatPage/>}/>
 <Route
 
     path="/skills/create"
