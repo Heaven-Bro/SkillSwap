@@ -8,6 +8,8 @@ import EditSkill from "./pages/EditSkill";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ReviewList from "./pages/ReviewList";
+import CreateReview from "./pages/CreateReview";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/skills/:id" element={<SkillDetails />}/>
         <Route path="/skills/:id/edit" element={<EditSkill/>}/>
+        <Route path="/reviews" element={<ReviewList/>}/>
+        <Route path="/reviews/create" element={<CreateReview/>} />
 <Route
 
     path="/skills/create"
