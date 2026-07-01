@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function MessageInput({ onSend }) {
+function MessageInput({onSend, onTyping,}) {
 
     const [text, setText] = useState("");
 
@@ -24,10 +24,21 @@ function MessageInput({ onSend }) {
         >
 
             <input
+
                 value={text}
-                onChange={(e)=>setText(e.target.value)}
+
+                onChange={(e)=>{
+
+                    setText(e.target.value);
+
+                    onTyping();
+
+                }}
+
                 className="flex-1 p-4 outline-none"
+
                 placeholder="Type a message..."
+
             />
 
             <button

@@ -51,6 +51,26 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         data = json.loads(text_data)
 
+        event = data.get("event", "message")
+
+        if event == "typing":
+
+            await self.channel_layer.group_send(
+
+                self.room_group_name,
+
+                {
+
+                    "type": "typing_event",
+
+                    "user": self.user.username,
+
+                }
+
+            )
+
+            return
+
         message = data["message"]
 
         saved_message = await self.save_message(message)
@@ -74,7 +94,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             }
 
         )
-
     async def chat_message(self, event):
 
         await self.send(
@@ -82,6 +101,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
             text_data=json.dumps(event)
 
         )
+    
+    async def typing_event(self, event):
+
+        await self.send(
+
+            text_data=json.dumps({
+
+                "event": "typing",
+
+                "user": event["user"]
+
+            })
+
+        )    
 
     @database_sync_to_async
     def user_in_conversation(self):

@@ -21,17 +21,7 @@ function ChatPage() {
 
     const currentUser = localStorage.getItem("username");
 
-    const {
-
-        messages,
-
-        send,
-
-    } = useChat(
-
-        selectedConversation?.id
-
-    );
+    const {messages, send, typing, typingUser, } = useChat(selectedConversation?.id);
 
     useEffect(() => {
 
@@ -109,9 +99,21 @@ function ChatPage() {
 
                             />
 
+                            {typingUser && typingUser !== currentUser && (
+
+                                <div className="px-5 py-2 text-sm text-gray-500 italic">
+
+                                    {typingUser} is typing...
+
+                                </div>
+
+                            )}
+
                             <MessageInput
 
                                 onSend={handleSend}
+
+                                onTyping={typing}
 
                             />
 

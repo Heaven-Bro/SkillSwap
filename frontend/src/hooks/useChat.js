@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 function useChat(roomId) {
 
     const socketRef = useRef(null);
-
+    const [typingUser, setTypingUser] = useState("");
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
@@ -20,9 +20,23 @@ function useChat(roomId) {
 
             const data = JSON.parse(event.data);
 
+            if (data.event === "typing") {
+
+                setTypingUser(data.user);
+
+                setTimeout(() => {
+
+                    setTypingUser("");
+
+                }, 1200);
+
+                return;
+
+            }
+
             setMessages(prev => [...prev, data]);
 
-        };
+        };        
 
         return () => {
 
@@ -46,13 +60,31 @@ function useChat(roomId) {
 
     };
 
+    const typing = () => {
+
+        socketRef.current.send(
+
+            JSON.stringify({
+
+                event: "typing"
+
+            })
+
+        );
+
+    };
+
     return {
 
         messages,
 
         send,
 
-    };
+        typing,
+
+        typingUser,
+
+    };    
 
 }
 
