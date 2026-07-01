@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ReviewList from "./pages/ReviewList";
 import CreateReview from "./pages/CreateReview";
+import NotificationList from "./pages/NotificationList";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/skills/:id/edit" element={<EditSkill/>}/>
         <Route path="/reviews" element={<ReviewList/>}/>
         <Route path="/reviews/create" element={<CreateReview/>} />
+        <Route path="/notifications" element={<NotificationList/>} />
 <Route
 
     path="/skills/create"

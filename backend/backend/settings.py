@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     'exchange',
     'reviews',
     'notifications',
+    'chat',
 
 
+    'daphne',
+    'channels',
     'rest_framework',
     'django_filters',
 ]
@@ -97,9 +100,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = "backend.asgi.application"
 
-
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 

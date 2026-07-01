@@ -25,8 +25,8 @@ urlpatterns = [
     path("api/auth/", include("accounts.urls")),
     path("api/profile/", include("profiles.urls")),
     path("api/exchange/", include("exchange.urls")),
-    path("api/reviews", include("reviews.urls")),
-    path("api/notifications", include("notifications.urls")),
+    path("api/reviews/", include("reviews.urls")),
+    path("api/notifications/", include("notifications.urls")),
 ]
 
 
