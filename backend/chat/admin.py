@@ -1,3 +1,4 @@
+from .models import UserStatus
 from django.contrib import admin
 
 from .models import Conversation
@@ -36,4 +37,20 @@ class MessageAdmin(admin.ModelAdmin):
     search_fields = (
         "content",
         "sender__username",
+    )
+
+
+
+
+@admin.register(UserStatus)
+class UserStatusAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "user",
+        "is_online",
+        "last_seen",
+    )
+
+    list_filter = (
+        "is_online",
     )
