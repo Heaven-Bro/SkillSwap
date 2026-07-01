@@ -40,9 +40,7 @@ class Message(models.Model):
 
     content = models.TextField()
 
-    is_read = models.BooleanField(
-        default=False
-    )
+    is_read = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(
         auto_now_add=True
@@ -51,5 +49,16 @@ class Message(models.Model):
     class Meta:
         ordering = ["created_at"]
 
+    def save(self, *args, **kwargs):
+
+        super().save(*args, **kwargs)
+
+        Conversation.objects.filter(
+            id=self.conversation.id
+        ).update(
+            updated_at=self.created_at
+        )
+
     def __str__(self):
+
         return f"{self.sender.username}: {self.content[:30]}"

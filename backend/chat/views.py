@@ -15,18 +15,19 @@ class ConversationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-
         return Conversation.objects.filter(
-
             participants=self.request.user
-
         ).prefetch_related(
 
             "participants",
+
             "messages"
 
-        )
+        ).order_by(
 
+            "-updated_at"
+
+        )
 
 class MessageViewSet(viewsets.ModelViewSet):
 

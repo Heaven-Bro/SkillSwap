@@ -28,16 +28,24 @@ class ConversationSerializer(serializers.ModelSerializer):
     )
 
     last_message = serializers.SerializerMethodField()
+    last_sender = serializers.SerializerMethodField()
 
     class Meta:
 
         model = Conversation
 
         fields = (
+
             "id",
+
             "participants",
+
             "last_message",
+
+            "last_sender",
+
             "updated_at",
+
         )
 
     def get_last_message(self, obj):
