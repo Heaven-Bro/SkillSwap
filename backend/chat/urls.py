@@ -1,7 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import ConversationViewSet
-from .views import MessageViewSet
+from .views import ConversationViewSet, MessageViewSet, UserStatusViewSet
 
 router = DefaultRouter()
 
@@ -17,4 +16,9 @@ router.register(
     basename="messages"
 )
 
+router.register(
+    "status",
+    UserStatusViewSet,
+    basename="status"
+)
 urlpatterns = router.urls

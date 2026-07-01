@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from .models import Conversation
-from .models import Message
+from .models import Conversation, UserStatus, Message
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -75,3 +74,16 @@ class ConversationSerializer(serializers.ModelSerializer):
             return message.content
 
         return ""
+    
+
+class UserStatusSerializer(serializers.ModelSerializer):
+
+    username = serializers.ReadOnlyField(
+        source="user.username"
+    )
+
+    class Meta:
+
+        model = UserStatus
+
+        fields = "__all__"

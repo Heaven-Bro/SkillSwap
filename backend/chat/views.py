@@ -1,12 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
-from .models import Conversation
-from .models import Message
+from .models import Conversation, Message, UserStatus
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .serializers import ConversationSerializer
-from .serializers import MessageSerializer
+from .serializers import ConversationSerializer, MessageSerializer, UserStatusSerializer
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
@@ -78,3 +76,12 @@ class MessageViewSet(viewsets.ModelViewSet):
             "success": True
 
         })
+    
+
+class UserStatusViewSet(viewsets.ReadOnlyModelViewSet):
+
+    queryset = UserStatus.objects.select_related("user")
+
+    serializer_class = UserStatusSerializer
+
+    permission_classes = [IsAuthenticated]
