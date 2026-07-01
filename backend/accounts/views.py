@@ -20,7 +20,15 @@ class MeView(APIView):
         return Response({
 
             "id": request.user.id,
+
             "username": request.user.username,
+
             "email": request.user.email,
+
+            "first_name": request.user.first_name,
+
+            "last_name": request.user.last_name,
+
+            "date_joined": request.user.date_joined,
 
         })
