@@ -96,6 +96,7 @@ function ChatPage() {
                                 ]}
 
                                 currentUser={currentUser}
+                                read={read}
 
                             />
 

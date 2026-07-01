@@ -34,9 +34,35 @@ function useChat(roomId) {
 
             }
 
+            if (data.event === "read") {
+
+                setMessages(prev =>
+
+                    prev.map(msg =>
+
+                        msg.id === data.message_id
+
+                            ? {
+
+                                ...msg,
+
+                                is_read: true
+
+                            }
+
+                            : msg
+
+                    )
+
+                )
+
+                return
+
+            }
+
             setMessages(prev => [...prev, data]);
 
-        };        
+        };
 
         return () => {
 
@@ -60,6 +86,22 @@ function useChat(roomId) {
 
     };
 
+    const read = (messageId) => {
+
+        socketRef.current.send(
+
+            JSON.stringify({
+
+                event: "read",
+
+                message_id: messageId
+
+            })
+
+        )
+
+    }
+    
     const typing = () => {
 
         socketRef.current.send(
@@ -84,7 +126,7 @@ function useChat(roomId) {
 
         typingUser,
 
-    };    
+    };
 
 }
 

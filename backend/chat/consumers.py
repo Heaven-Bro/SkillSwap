@@ -1,5 +1,5 @@
 import json
-
+from django.utils import timezone
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 
@@ -70,6 +70,32 @@ class ChatConsumer(AsyncWebsocketConsumer):
             )
 
             return
+        
+        if event == "read":
+
+            message_id = data["message_id"]
+
+            await self.mark_message_read(
+
+                message_id
+
+            )
+
+            await self.channel_layer.group_send(
+
+                self.room_group_name,
+
+                {
+
+                    "type":"read_event",
+
+                    "message_id":message_id,
+
+                }
+
+            )
+
+            return
 
         message = data["message"]
 
@@ -116,6 +142,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         )    
 
+    async def read_event(self,event):
+
+        await self.send(
+
+            text_data=json.dumps({
+
+                "event":"read",
+
+                "message_id":event["message_id"]
+
+            })
+
+        )
+
     @database_sync_to_async
     def user_in_conversation(self):
 
@@ -143,5 +183,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
             sender=self.user,
 
             content=message
+
+        )
+    
+    @database_sync_to_async
+    def mark_message_read(self,message_id):
+
+        Message.objects.filter(
+
+            id=message_id
+
+        ).update(
+
+            is_read=True,
+
+            read_at=timezone.now()
 
         )
