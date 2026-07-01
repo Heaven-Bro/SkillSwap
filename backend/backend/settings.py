@@ -33,6 +33,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,18 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'channels',
+    'rest_framework',
+    'django_filters',
+
     'skills',
-    "profiles",
+    'profiles',
     'exchange',
     'reviews',
     'notifications',
     'chat',
-
-
-    'daphne',
-    'channels',
-    'rest_framework',
-    'django_filters',
 ]
 
 MIDDLEWARE = [
