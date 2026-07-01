@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'skills',
     "profiles",
     'exchange',
+    'reviews',
 
 
     'rest_framework',
