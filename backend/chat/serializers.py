@@ -1,0 +1,51 @@
+from rest_framework import serializers
+
+from .models import Conversation
+from .models import Message
+
+
+class MessageSerializer(serializers.ModelSerializer):
+
+    sender_name = serializers.ReadOnlyField(
+        source="sender.username"
+    )
+
+    class Meta:
+
+        model = Message
+
+        fields = "__all__"
+
+        read_only_fields = (
+            "sender",
+        )
+
+
+class ConversationSerializer(serializers.ModelSerializer):
+
+    participants = serializers.StringRelatedField(
+        many=True
+    )
+
+    last_message = serializers.SerializerMethodField()
+
+    class Meta:
+
+        model = Conversation
+
+        fields = (
+            "id",
+            "participants",
+            "last_message",
+            "updated_at",
+        )
+
+    def get_last_message(self, obj):
+
+        message = obj.messages.last()
+
+        if message:
+
+            return message.content
+
+        return ""
