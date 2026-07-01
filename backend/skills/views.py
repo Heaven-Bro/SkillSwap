@@ -1,3 +1,5 @@
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -5,6 +7,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Category, Skill
 from .serializers import CategorySerializer, SkillSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 class CategoryViewSet(viewsets.ModelViewSet):
 
@@ -32,8 +35,6 @@ class SkillViewSet(viewsets.ModelViewSet):
 
 
 
-from rest_framework.decorators import action
-from rest_framework.response import Response
 
 @action(detail=False, methods=["get"], permission_classes=[IsAuthenticated])
 def my_skills(self, request):
